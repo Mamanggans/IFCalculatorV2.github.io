@@ -10,59 +10,62 @@
 	<link href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
-	<header class="header-sect" >
-			<nav class="main-menu">
-				<a class="site-logo" href="#">
-					<img src="img/cal_logo_U.png" alt="">
-				</a>
-
-			</nav>
+	<header>
+			<div class="header-left">
+			  <img class="logo" src="img/cal_logo_U.png"/>
+			</div>
+			<!-- Tambahkan ikon menu dibawah -->
+			<div class="header-right">
+			  <a href="#">HOME</a>
+			  <a href="#calculator">CALCULATOR</a>
+			  <a href="#history" class="login">HISTORY</a>
+			</div>
 	</header>
 	<main>
 		<div id="content">
-			<div class="flex-container-column card">
-			   <h2 class="judul">IF Calculator</h2>			   
-				<div class="display">
-					<h1 id="displayNumber">0</h1>
+			<div class="flex-container-column card" id="calculator">
+			   <h2 class="judul" >IF Calculator</h2>
+			   
+			   <input type="text" class="calculator-screen  display" value="0" disabled />
+			   <div  class="calculator-keys">
+				<div class="row flex-container-row">
+				 <button class="all-clear button clear double">AC</button>
+				 <button class="operator button" value="%">%</button>
+				 <button class="operator button" value="/">&divide;</button>
 				</div>
-				<div class="flex-container-row">
-				<div class="button clear">AC</div>
-				<div class="button operator">%</div>
-				<div class="button negative">+/-</div>
-				<div class="button operator">:</div>
+				 <div class="row flex-container-row">
+				 <button class="number button" value="7">7</button>
+				 <button class="number button" value="8">8</button>
+				 <button class="number button" value="9">9</button>
+				 <button class="operator button" value="*">&times;</button>
 				</div>
-				<div class="flex-container-row">
-					<div class="button">7</div>
-					<div class="button">8</div>
-					<div class="button">9</div>
-					<div class="button operator">x</div>
+				<div class="row flex-container-row">
+				 <button class="number button" value="4">4</button>
+				 <button class="number button" value="5">5</button>
+				 <button class="number button" value="6">6</button>
+				 <button class="operator button" value="-">-</button>
 				</div>
-				<div class="flex-container-row">
-					<div class="button">4</div>
-					<div class="button">5</div>
-					<div class="button">6</div>
-					<div class="button operator">-</div>
+				<div class="row flex-container-row">
+				 <button class="number button" value="1">1</button>
+				 <button class="number button" value="2">2</button>
+				 <button class="number button" value="3">3</button>
+				 <button class="operator button" value="+">+</button>
 				</div>
-				<div class="flex-container-row">
-					<div class="button">1</div>
-					<div class="button">2</div>
-					<div class="button">3</div>
-					<div class="button operator">+</div>
+				<div class="row flex-container-row">
+				 <button class="number zero-btn button double" value="0">0</button>
+				 <button class="decimal button" value=".">.</button>
+				 <button class="equal-sign button equals">=</button>
 				</div>
-				<div class="flex-container-row">
-					<div class="button double">0</div>
-					<div class="button dot">.</div>
-					<div class="button equals ">=</div>
-				</div>
+			</div>
 			</div>	  
-			   <div class="history card">
-				<h2 class="judul">Riwayat Perhitungan</h2>
+			   <div class="history card" id="history">
+				<h2 class="judul" >History of Calculation</h2>
 				<table>
 					<thead>
 						<tr>
 							<th>Angka Pertama</th>
-							<th>Operator</th>
 							<th>Angka Kedua</th>
+							<th>Operator</th>
 							<th>Hasil</th>
 						</tr>
 					</thead>
@@ -70,23 +73,6 @@
 				</table>
 			</div>
 	</div>
-		 <aside>
-			<article class="profile card">
-			   <header>
-				  <img class="authors" src="img/perdi.jpeg">
-				  <h2 class="judul-pro">Ferdiansyah</h2>
-				  <p class="tengah-txt">front-end devloper</p>
-			   </header>
-			   <section>
-				  <h2 class="sub-pro">Social Media</h2>
-				  <div class="par-pro"><p style="color:#CB2D82;">Instagram </p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<p style="color:#CB2D82;">@ferdikings01</p></div>
-				  <div class="par-pro"><p style="color:black;">Github &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<p>Mamanggans</p></div>
-				  <div class="par-pro"><p style="color:#4081EC">Email </p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<p style="color:#4081EC">Ferdikings03@gmail.com</p></div>
-				  <a href="#" class="site-profile">Messages</a>
-				</section>
-			</article>
-		 </aside>
-		 
 	  </main>
 	<footer class="main-bawah">
 		<center><p>IFCALCULATOR &#169; 2022 All Rights Reserved </p></center>

@@ -1,123 +1,117 @@
-const calculator = {
-   displayNumber: '0',
-   operator: ``, 
-   firstNumber: ``,// kita gunakan nilai null terlebih dahulu karena properti tersebut akan diberikan nilai ketika pengguna melakukan aksi.
- // merupakan kondisi di mana kalkulator sedang menunggu pengguna menentukkan angka kedua dalam melakukan perhitungan.
-};
+const numbers = document.querySelectorAll(".number")
+const calculatorScreen = document.querySelector('.calculator-screen')
 
-const updateDisplay = () => {
-   document.querySelector("#displayNumber").innerText = calculator.displayNumber;
+let prevNumber = ''
+let calculationOperator = ''
+let currentNumber = '0'
+
+const updateScreen = (number) => {
+   calculatorScreen.value = number 
 }
 
-const clearCalculator = () =>  {
-   calculator.displayNumber = '0';
-   calculator.operator = null;
-   calculator.firstNumber = null;
-}
-
-const inputDigit = (digit) => {
-   if (calculator.displayNumber === '0') {
-       calculator.displayNumber = digit;
-   } else {
-       calculator.displayNumber += digit;
-   }
-}
-
-const inverseNumber= () => {
-   if (calculator.displayNumber === '0') {
-       return;
-   }
-   calculator.displayNumber = calculator.displayNumber * -1;
-}
-
-const handleOperator = (operator) => {
-    if (!calculator.waitingForSecondNumber) {
-       calculator.operator = operator;
-       calculator.firstNumber = calculator.displayNumber;
-       calculator.displayNumber = `0`;}
-    else if (calculator.firstNumber === "0") {
-        calculator.firstNumber = calculator.displayNumber;
-    } 
-        calculator.operator = operator
+const inputNumber = (number) => {
+    if (currentNumber === '0'){
+        currentNumber = number
+    }else{
+        currentNumber += number
     }
+}
 
+numbers.forEach((number) => {
+    number.addEventListener("click", (event) => {
+        inputNumber(event.target.value)
+        updateScreen(currentNumber)
 
+    })
+})
 
-const performCalculation = () => {
-   if (calculator.firstNumber == null || calculator.operator == null) {
-       alert("Anda belum menetapkan operator");
-       return;
+const operators = document.querySelectorAll(".operator")
 
-  }
-  let result = 0;
-   if (calculator.operator === `+`) {
-         result = parseFloat(calculator.firstNumber) + parseFloat(calculator.displayNumber);
-   } else if (calculator.operator === `-`){
-         result = parseFloat(calculator.firstNumber) - parseFloat(calculator.displayNumber);
-   } else if (calculator.operator === `x`){
-         result = parseFloat(calculator.firstNumber) * parseFloat(calculator.displayNumber);
-   }  else if (calculator.operator === `:`){
-    result = parseFloat(calculator.firstNumber) / parseFloat(calculator.displayNumber);}
-    else {
-        result = parseInt(calculator.firstNumber) % parseInt(calculator.displayNumber);
+operators.forEach((operator) => {
+    operator.addEventListener("click", (event) =>{
+        inputOperator(event.target.value)
+    })
+})
+
+const inputOperator = (operator) => {
+    if (calculationOperator === ''){
+        prevNumber = currentNumber
     }
-//     else {
-//     result = (parseFloat(calculator.firstNumber) / parseFloat(calculator.displayNumber)) * 100;
-//      }
-// else {
-//      result = parseFloat(calculator.firstNumber) / 100;
-     const inputDot = (dot) => {
-        if(displayNumber.includes(`.`)){
+    
+    calculationOperator = operator
+    currentNumber = '0'
+}
+
+const equalSign = document.querySelector('.equal-sign')
+
+equalSign.addEventListener('click', () => {
+    calculate()
+    updateScreen(currentNumber)
+    console.log(currentNumber)
+})
+
+
+const calculate = () => {
+    let result = ''
+    switch(calculationOperator){
+        case "+":
+            result = parseFloat(prevNumber) + parseFloat(currentNumber)
+            break
+        case "-":
+            result = prevNumber - currentNumber
+            break
+        case "*":
+            result = prevNumber * currentNumber
+            break
+        case "/":
+            result = prevNumber / currentNumber
+            break
+            case "%":
+                result = prevNumber % currentNumber
+            break
+            // case "%":
+            //     result = (prevNumber / currentNumber) * 100
+            // break
+        default:
             return
-        }
-        displayNumber += dot
-     }
-
-   // objek yang akan dikirimkan sebagai argumen fungsi putHistory()
-   const history = {
-         firstNumber: calculator.firstNumber,
-         secondNumber: calculator.displayNumber,
-         operator: calculator.operator,
-         result: result
     }
-         putHistory(history);
-         calculator.displayNumber = result;
-         renderHistory();
-    }
-         
-
-
-
-const buttons = document.querySelectorAll(".button");
-for (let button of buttons) {
-   button.addEventListener('click', function (event) {
-
-       const target = event.target;
-
-       if (target.classList.contains('clear')) {
-           clearCalculator();
-           updateDisplay();
-           return;
-       }
-
-       if (target.classList.contains('negative')) {
-           inverseNumber();
-           updateDisplay();
-           return;
-       }
-
-       if (target.classList.contains('equals')) {
-           performCalculation();
-           updateDisplay();
-           return;
-       }
-
-       if (target.classList.contains('operator')) {
-           handleOperator(target.innerText)
-           return;
-       }
-
-       inputDigit(target.innerText);
-       updateDisplay()
-   });
+    const history = {
+        firstNumber: prevNumber,
+        secondNumber: calculationOperator,
+        operator: currentNumber,
+        result: result
+   }
+   putHistory(history);
+    currentNumber = result
+    calculationOperator = ''
+    renderHistory();
 }
+
+const clearBtn = document.querySelector('.all-clear')
+
+clearBtn.addEventListener('click', () => {
+  clearAll()
+  updateScreen(currentNumber)  
+})
+
+const clearAll = () => {
+    prevNumber = ''
+    calculationOperator = ''
+    currentNumber = '0'
+}
+
+
+const decimal = document.querySelector('.decimal')
+
+decimal.addEventListener('click', (event) => {
+  inputDecimal(event.target.value)
+  updateScreen(currentNumber)  
+})
+
+inputDecimal = (dot) => {
+    if(currentNumber.includes('.')){
+        return
+    }
+    currentNumber += dot
+}
+

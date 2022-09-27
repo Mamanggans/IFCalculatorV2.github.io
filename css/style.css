@@ -33,6 +33,9 @@ p {
 
 	line-height: 2;
 }
+a {
+	text-decoration: none;
+  }
 
 
 .profile{
@@ -63,16 +66,47 @@ ol {
 	padding: 0;
 	margin: 0;
 }
+header {
+	height: 65px;
+	width: 100%;
+	background-color:   rgb(181, 234, 234, 0.9);
 
-
-.header-sect {
-	background: #131313;
-	padding: 20px 0;
-	border-bottom: 4.5px solid ;
-    border-color:  #ffb320;
+	top: 0;
+	z-index: 10;
+  
+  }
+  
+  .logo {
+	width: 150px;
+	margin-top: 12px;
 	
+  }
+  
+  .header-left {
+	float: left;
+	margin-left: 3%;
+  }
+  
+  .header-right {
+	float: right;
+	margin-right: 2%;
+  }
+  
+  .header-right a {
+	line-height: 65px;
+	padding: 0 25px;
+	color: #000000;
+	display: block;
+	float: left;
+	transition: all 0.5s;
+  }
+  
+  .header-right a:hover {
+	background-color: rgba(255, 255, 255, 0.3);
+  }
+  
 
-}
+  
 
 .main-menu {
 	display:flex;
@@ -85,12 +119,21 @@ ol {
 .main-bawah {
 	display:flex;
 	justify-content: space-around;
+	background-color: #BCECEC;
+	
+
+}
+.main-bawah p{
+	color: #000000;
+
 }
 
 .main-bawah ul {
 	display: flex;
 	list-style: none;
 	justify-content: space-between;
+	
+	
 }
 
 .site-logo {
@@ -142,7 +185,7 @@ body {
 .site-btn:hover {
 	color: white;
 }
-.site-profile {
+.btn_add_comic {
 	display: grid;
 	text-align: center;
 	margin-top: 10%;
@@ -159,7 +202,7 @@ body {
 	cursor: pointer;
 	text-decoration: none;
 }
-.site-profile:hover {
+.btn_add_comic:hover {
 	color: white;
 }
 
@@ -333,8 +376,8 @@ main {
 	padding: 0;
  }
   #content {
-	float: left;
-	width: 75%;
+	float: center;
+	width: 100%;
 	padding: 20px; 
  }
  aside {
@@ -361,7 +404,7 @@ main {
  .judul {
 	 font-size: 40px;
 	font-family: 'Roboto', sans-serif;
-	color: #F44949;
+	color: #42C2FF;
 	text-align: center;
 	margin-top: 10px;
 	margin-bottom: 40px;
@@ -445,7 +488,7 @@ main {
 .negative,
 .clear,
 .equals {
-   background: orange;
+   background: #BCECEC;
 }
 table {
    border-collapse: collapse;
@@ -459,8 +502,8 @@ td {
    padding: 16px;
 }
 th {
-   background-color: orange;
-   color: white;
+   background-color: #BCECEC;
+   color: #000000;
 }
 tr:nth-child(even) {
    background-color: #d2d2d2;
@@ -482,6 +525,9 @@ tr:nth-child(even) {
 
 @media screen and (min-width: 2px) and (max-width: 1300px) {
 
+	.header-right {
+		display: none;
+	  }
 body {
 	overflow-x: hidden;
 }
